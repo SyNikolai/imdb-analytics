@@ -1,0 +1,68 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths:                             # only when pipeline code or dependencies change
+      - "src/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/pipeline.yml"
+  schedule:
+    - cron: "0 5 * * 1"                # every Monday 05:00 UTC, catches changes on IMDb's side
+  workflow_dispatch:                   # adds a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: read
+
+concurrency:                           # a new run cancels one still in progress
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: astral-sh/setup-uv@v8.1.0
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Lint
+        run: uv run ruff check .
+
+  pipeline:
+    needs: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Free disk space
+        run: |
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - uses: actions/checkout@v6
+
+      - uses: astral-sh/setup-uv@v8.1.0
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Download IMDb files
+        run: uv run imdb-download
+
+      - name: Build database
+        run: uv run imdb-build-db
+
+      - name: Verify database
+        run: uv run imdb-verify-db
+
+      - name: Clean up source files
+        run: uv run imdb-cleanup
