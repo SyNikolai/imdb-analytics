@@ -21,7 +21,7 @@ def report(counts: dict[str, int], dbSize: int) -> str:
     return "\n".join(lines)
 
 def main() -> None:
-    if not os.PATH.EXISTS(DB_PATH):
+    if not os.path.exists(DB_PATH):
         raise SystemExit(f"No database found at {DB_PATH}")
     
     counts = rowCounts()
