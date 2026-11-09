@@ -11,6 +11,7 @@ dependencies = []
 
 [project.scripts]
 imdb-analytics = "imdb_analytics:main"
+data-downloader = "data-downloader:main"
 
 [build-system]
 requires = ["uv_build>=0.13.4,<0.14.0"]
