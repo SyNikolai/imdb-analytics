@@ -15,3 +15,6 @@ data/
 *.tsv
 *.tsv.gz
 *.sql
+
+# Other
+.DS_Store
