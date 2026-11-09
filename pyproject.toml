@@ -12,6 +12,7 @@ dependencies = []
 [project.scripts]
 imdb-analytics = "imdb_analytics.data_downloader:main"
 imdb-build-db = "imdb_analytics.database_builder:main"
+imdb-cleanup = "imdb_analytics.data_cleaner:main"
 
 [build-system]
 requires = ["uv_build>=0.13.4,<0.14.0"]
