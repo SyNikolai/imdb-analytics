@@ -7,11 +7,14 @@ authors = [
     { name = "SyNikolai", email = "simnikolad@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "matplotlib>=3.11.2",
+]
 
 [project.scripts]
 imdb-analytics = "imdb_analytics.data_downloader:main"
 imdb-build-db = "imdb_analytics.database_builder:main"
+imdb-verify-db = "imdb_analytics.database_verifier:main"
 imdb-cleanup = "imdb_analytics.data_cleaner:main"
 
 [build-system]
@@ -20,6 +23,7 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "ipykernel>=7.4.0",
     "numpy>=2.5.4",
     "pandas>=3.1.1",
     "pytest>=9.2.0",

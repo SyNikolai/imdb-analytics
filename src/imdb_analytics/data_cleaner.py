@@ -1,5 +1,7 @@
 import os
+
 from imdb_analytics.database_builder import DATA_DIR, DB_PATH
+
 
 def dataSize(n_bytes: int) -> str:
     return f"{n_bytes / 1e9:,.2f} GB" if n_bytes >= 1e9 else f"{n_bytes / 1e6:,.1f} MB"
