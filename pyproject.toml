@@ -10,8 +10,8 @@ requires-python = ">=3.13"
 dependencies = []
 
 [project.scripts]
-imdb-analytics = "imdb_analytics:main"
-data-downloader = "data-downloader:main"
+imdb-analytics = "imdb_analytics.data_downloader:main"
+imdb-build-db = "imdb_analytics.database_builder:main"
 
 [build-system]
 requires = ["uv_build>=0.13.4,<0.14.0"]
