@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-imdb-analytics = "imdb_analytics.data_downloader:main"
+imdb-download = "imdb_analytics.data_downloader:main"
 imdb-build-db = "imdb_analytics.database_builder:main"
 imdb-verify-db = "imdb_analytics.database_verifier:main"
 imdb-cleanup = "imdb_analytics.data_cleaner:main"

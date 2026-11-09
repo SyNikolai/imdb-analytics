@@ -142,7 +142,8 @@ flowchart LR
 - [x] Verify the database and clean up the source files
 - [x] Run the pipeline in CI
 - [ ] Queries and data analysis
-Queries and data analysis are a work in progress and will be added in future commits initially through the jupyter notebook then in a web app that will include interactive dashboards and graphs.
+
+**Queries and data analysis** are a work in progress and will be added in future commits initially through the jupyter notebook then in a web app that will include interactive dashboards and graphs.
  
 ## Data source and license
  
