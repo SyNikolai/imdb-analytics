@@ -16,5 +16,5 @@ data/
 *.tsv.gz
 *.sql
 
-# Other
+# macOS
 .DS_Store
